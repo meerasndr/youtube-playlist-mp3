@@ -1,5 +1,5 @@
 ''' 
-    Code snippet to get the MP3 audio of YouTube videos that are part of a playlist
+    Code snippet to extract MP3 audio from videos that are part of a YouTube playlist
 '''
 import os
 import sys
@@ -11,6 +11,7 @@ except ModuleNotFoundError:
     os.system('pip3 install yt_dlp')
 
 def get_video_urls(playlist_url):
+    ''' Given a playlist URL, get the URLs of all the videos in the playlist '''
     video_urls = []
     try:
         playlist = Playlist(playlist_url)
@@ -32,7 +33,7 @@ def download_mp3(video_urls):
       'format': 'bestaudio/best',
       'extractaudio' : True,  # only keep the audio
       'audioformat' : "mp3",  # convert to mp3 
-      'outtmpl': '%(playlist_index)d %(title)s',    # name the file the ID of the video
+      'outtmpl': '%(title)s',    # name of output file
       'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -46,11 +47,15 @@ def download_mp3(video_urls):
             except:
                 print(f"Problem downloading video {url}")
 
-try:
-    playlist_url = sys.argv[1]
-except:
-    print("Error :: Provide argument:: YouTube playlist URL")
-else:
-    video_urls = get_video_urls(playlist_url)
-    download_mp3(video_urls)    
+def main():
+    try:
+        playlist_url = sys.argv[1]
+    except:
+        print("Error :: Provide argument:: YouTube playlist URL")
+    else:
+        video_urls = get_video_urls(playlist_url)
+        download_mp3(video_urls)   
+
+if __name__ == '__main__' :
+    main()
 
