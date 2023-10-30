@@ -23,12 +23,19 @@ def get_video_urls(playlist_url):
         return video_urls
 
 def write_video_urls(video_urls, filename):
+    '''
+       Optional function: write all the video URLs to a text file.
+       Useful for cases where one may want to share the URLs with another person.
+    '''
     with open(filename, 'w') as f:
     	for url in video_urls:
     		f.write(url+'\n')
     print(f'Urls saved in {filename}')
 
-def download_mp3(video_urls):    
+def download_mp3(video_urls):
+    '''
+    Extract MP3 audio and download to the same folder
+    ''' 
     options = {
       'format': 'bestaudio/best',
       'extractaudio' : True,  # only keep the audio
@@ -51,7 +58,7 @@ def main():
     try:
         playlist_url = sys.argv[1]
     except:
-        print("Error :: Provide argument:: YouTube playlist URL")
+        print("Error!! Provide argument:: YouTube playlist URL")
     else:
         video_urls = get_video_urls(playlist_url)
         download_mp3(video_urls)   
