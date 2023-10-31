@@ -9,4 +9,4 @@ Pending:
 - venv for package installation
 
 Note:
-- This script has not been tested with private playlists & videos, and is expected not to work with them
+- This script has not been tested with private playlists & videos. The expectation is that it will NOT work.
