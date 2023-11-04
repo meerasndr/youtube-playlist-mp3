@@ -7,6 +7,7 @@ Usage:
 
 Pending:
 - venv for package installation
+- under the hood explanation
 
 Note:
 - This script has not been tested with private playlists & videos. The expectation is that it will NOT work.
